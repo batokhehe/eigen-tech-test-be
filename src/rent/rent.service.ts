@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateRentDto } from './dto/create-rent.dto';
 import { UpdateRentDto } from './dto/update-rent.dto';
 import { Rent } from './entities/rent.entity';
-import { IsNull, Repository, UpdateResult, getManager } from 'typeorm';
+import { IsNull, Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as moment from 'moment';
 import { Book } from 'src/book/entities/book.entity';
@@ -19,6 +19,7 @@ export class RentService {
     rent.member_code = createRentDto.member_code;
     rent.book_code = createRentDto.book_code;
     rent.status = 0;
+    rent.rent_date = moment(new Date(), 'DD-MM-YYYY hh:mm').toDate();
     rent.max_date = moment(new Date(), 'DD-MM-YYYY hh:mm')
       .add(7, 'days')
       .toDate();
@@ -45,7 +46,7 @@ export class RentService {
     const condition = {
       member_code: updateRentDto.member_code,
       book_code: updateRentDto.book_code,
-      returnDate: IsNull(),
+      return_date: IsNull(),
     };
     return this.rentRepository.findOneBy(condition);
   }

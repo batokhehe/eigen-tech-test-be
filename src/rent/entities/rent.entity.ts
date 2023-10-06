@@ -22,4 +22,7 @@ export class Rent {
 
   @Column({ type: 'timestamptz', nullable: true })
   return_date: Date;
+
+  @Column({ type: 'timestamptz', nullable: true })
+  rent_date: Date;
 }
