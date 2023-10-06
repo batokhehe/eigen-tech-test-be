@@ -4,7 +4,6 @@ import { Repository, UpdateResult } from 'typeorm';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
-import { Rent } from 'src/rent/entities/rent.entity';
 
 @Injectable()
 export class BookService {
